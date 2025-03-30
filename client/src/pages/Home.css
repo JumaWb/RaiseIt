@@ -1,6 +1,6 @@
 .landing-page {
   position: relative;
-  background: url('../assets/background.jpg') no-repeat center center/cover;
+  background: url('../assets/images/Home.jpeg') no-repeat center center/cover;
 }
 
 .landing-page::before {
