@@ -1,0 +1,10 @@
+.custom-footer {
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 15px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+  

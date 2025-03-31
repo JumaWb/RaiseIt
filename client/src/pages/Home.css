@@ -1,8 +1,13 @@
+/* Background Image and Overlay */
 .landing-page {
   position: relative;
   background: url('../assets/images/Home.jpeg') no-repeat center center/cover;
+  min-height: 100vh; /* Ensure it covers at least the full viewport */
+  display: flex;
+  flex-direction: column;
 }
 
+/* Dark overlay to improve text contrast */
 .landing-page::before {
   content: "";
   position: absolute;
@@ -10,12 +15,58 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  background: rgba(0, 0, 0, 0.75); /* Darker overlay */
   z-index: 1;
 }
 
+/* Ensure content is centered and properly positioned */
 .landing-page .container {
+  flex: 1; /* Push content between navbar and footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 2;
-  color: white;
+  text-align: center;
+}
+
+/* Ensure text is highly visible */
+.landing-page h1 {
+  color: #FFC107; /* Bright golden yellow */
+  font-weight: bold;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 1); /* Stronger text shadow */
+}
+
+.landing-page p {
+  color: #FFFF00; /* Pure bright yellow */
+  font-weight: 600;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 1);
+}
+
+/* Navbar Styling */
+.custom-navbar {
+  position: fixed; /* Ensures navbar stays at the top */
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.9) !important; /* Darker navbar */
+  padding: 10px 20px;
+}
+
+/* Footer Styling */
+.footer {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9); /* Match navbar style */
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  position: relative;
+  bottom: 0;
+  z-index: 10;
+}
+
+/* Button Styling */
+button {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
 }
