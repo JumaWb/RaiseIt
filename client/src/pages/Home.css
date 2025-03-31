@@ -7,7 +7,7 @@
   flex-direction: column;
 }
 
-/* Dark overlay to improve text contrast */
+/* Reduce darkness of overlay */
 .landing-page::before {
   content: "";
   position: absolute;
@@ -15,7 +15,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.75); /* Darker overlay */
+  background: rgba(0, 0, 0, 0.4); /* Lighter overlay */
   z-index: 1;
 }
 
@@ -30,17 +30,43 @@
   text-align: center;
 }
 
-/* Ensure text is highly visible */
+/* Heading Styling */
 .landing-page h1 {
   color: #FFC107; /* Bright golden yellow */
   font-weight: bold;
-  text-shadow: 3px 3px 8px rgba(0, 0, 0, 1); /* Stronger text shadow */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Softer text shadow */
+  animation: fadeInDown 1.5s ease-out; /* Animate on page load */
 }
 
+/* Paragraph Styling */
 .landing-page p {
-  color: #FFFF00; /* Pure bright yellow */
+  color: #FFFF00; /* Bright yellow */
   font-weight: 600;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 1);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8); /* Lighter shadow */
+  animation: fadeInUp 1.5s ease-out;
+}
+
+/* Animate Home Page Text */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Navbar Styling */
@@ -52,6 +78,14 @@
   z-index: 10;
   background: rgba(0, 0, 0, 0.9) !important; /* Darker navbar */
   padding: 10px 20px;
+}
+
+/* Navbar Brand Styling */
+.custom-navbar .navbar-brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-style: italic;
+  color: #FFC107 !important; /* Strong yellow */
 }
 
 /* Footer Styling */
@@ -69,4 +103,24 @@
 /* Button Styling */
 button {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  border-radius: 25px; /* Rounded buttons */
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+/* Login & Register Buttons */
+.custom-navbar .btn-outline-light {
+  border: 2px solid #FFC107;
+  color: #FFC107;
+}
+
+.custom-navbar .btn-primary {
+  background-color: #FFC107;
+  border-color: #FFC107;
+  color: black;
+}
+
+.custom-navbar .btn-primary:hover {
+  background-color: #e6ac00;
+  border-color: #e6ac00;
 }
