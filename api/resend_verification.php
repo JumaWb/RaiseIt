@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/db_connect.php';
+require_once 'config/db_connect.php';
 require_once 'verification_email.php';
 
 header("Access-Control-Allow-Origin: http://localhost:3000");

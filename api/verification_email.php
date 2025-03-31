@@ -1,6 +1,6 @@
 <?php
-require_once 'includes/db_connect.php';
-
+require_once 'config/db_connect.php';
+require_once 'env_loader.php';
 // Include PHPMailer files
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
