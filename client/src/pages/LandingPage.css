@@ -1,0 +1,126 @@
+/* Background Image and Overlay */
+.landing-page {
+  position: relative;
+  background: url('../assets/images/Home.jpeg') no-repeat center center/cover;
+  min-height: 100vh; /* Ensure it covers at least the full viewport */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Reduce darkness of overlay */
+.landing-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Lighter overlay */
+  z-index: 1;
+}
+
+/* Ensure content is centered and properly positioned */
+.landing-page .container {
+  flex: 1; /* Push content between navbar and footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+/* Heading Styling */
+.landing-page h1 {
+  color: #FFC107; /* Bright golden yellow */
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Softer text shadow */
+  animation: fadeInDown 1.5s ease-out; /* Animate on page load */
+}
+
+/* Paragraph Styling */
+.landing-page p {
+  color: #FFFF00; /* Bright yellow */
+  font-weight: 600;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8); /* Lighter shadow */
+  animation: fadeInUp 1.5s ease-out;
+}
+
+/* Animate Home Page Text */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navbar Styling */
+.custom-navbar {
+  position: fixed; /* Ensures navbar stays at the top */
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.9) !important; /* Darker navbar */
+  padding: 10px 20px;
+}
+
+/* Navbar Brand Styling */
+.custom-navbar .navbar-brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-style: italic;
+  color: #FFC107 !important; /* Strong yellow */
+}
+
+/* Footer Styling */
+.footer {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9); /* Match navbar style */
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  position: relative;
+  bottom: 0;
+  z-index: 10;
+}
+
+/* Button Styling */
+button {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  border-radius: 25px; /* Rounded buttons */
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+/* Login & Register Buttons */
+.custom-navbar .btn-outline-light {
+  border: 2px solid #FFC107;
+  color: #FFC107;
+}
+
+.custom-navbar .btn-primary {
+  background-color: #FFC107;
+  border-color: #FFC107;
+  color: black;
+}
+
+.custom-navbar .btn-primary:hover {
+  background-color: #e6ac00;
+  border-color: #e6ac00;
+}

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom"; // Import navigation
 import { API_ENDPOINTS } from "./apiService.js";
 import "./AuthForm.css";
 
 const AuthForm = ({ mode, onClose, setUser }) => {
   const isRegister = mode === "register";
+  const navigate = useNavigate(); // Initialize navigate function
+
   const [formData, setFormData] = useState({ 
     full_name: "", 
     email: "", 
@@ -45,12 +48,15 @@ const AuthForm = ({ mode, onClose, setUser }) => {
           name: isRegister ? formData.full_name : data.user_name || formData.email, 
           email: formData.email 
         });
-        
+
         if (data.token) {
           localStorage.setItem("authToken", data.token);
         }
-        
-        setTimeout(() => onClose(), 1500); 
+
+        setTimeout(() => {
+          onClose(); // Close modal or auth form
+          navigate("/home"); // Redirect to Home page
+        }, 1500);
       } else {
         setMessage(data.message || "An error occurred");
       }
