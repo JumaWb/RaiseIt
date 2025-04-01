@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Form, Button, Card, ListGroup } from "react-bootstrap";
+import { Form, Button, Card } from "react-bootstrap";
+import { API_ENDPOINTS } from "./apiService.js";
 import "./AuthForm.css";
 
 const AuthForm = ({ mode, onClose, setUser }) => {
@@ -28,40 +28,35 @@ const AuthForm = ({ mode, onClose, setUser }) => {
       password: formData.password
     };
     
-    const url = isRegister
-      ? "http://localhost/RaiseIt/api/register.php"
-      : "http://localhost/RaiseIt/api/login.php";
+    const url = isRegister ? API_ENDPOINTS.REGISTER : API_ENDPOINTS.LOGIN;
 
     try {
-      const response = await axios.post(url, dataToSend, { 
-        headers: { "Content-Type": "application/json" },
-        timeout: 10000 
+      const response = await fetch(url, { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dataToSend)
       });
       
-      if (response.data.status === "success") {
-        setMessage(response.data.message);
+      const data = await response.json();
+      
+      if (data.status === "success") {
+        setMessage(data.message);
         setUser({ 
-          name: isRegister ? formData.full_name : response.data.user_name || formData.email, 
+          name: isRegister ? formData.full_name : data.user_name || formData.email, 
           email: formData.email 
         });
         
-        if (response.data.token) {
-          localStorage.setItem("authToken", response.data.token);
+        if (data.token) {
+          localStorage.setItem("authToken", data.token);
         }
         
         setTimeout(() => onClose(), 1500); 
       } else {
-        setMessage(response.data.message || "An error occurred");
+        setMessage(data.message || "An error occurred");
       }
     } catch (error) {
       console.error("Authentication error:", error);
-      if (error.code === "ECONNABORTED") {
-        setMessage("Request timed out. Server might be unavailable.");
-      } else if (!error.response) {
-        setMessage("Network error: Cannot connect to the server. Please check your connection or server status.");
-      } else {
-        setMessage("Error: " + (error.response?.data?.message || error.message));
-      }
+      setMessage("Connection error. Please try again later.");
     } finally {
       setIsLoading(false);
     }

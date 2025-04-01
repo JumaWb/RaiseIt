@@ -1,10 +1,152 @@
-.custom-footer {
-    background: rgba(0, 0, 0, 0.85);
-    color: white;
-    padding: 15px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+.impact-footer {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #fff;
+  padding: 3rem 0 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+}
+
+.footer-mission {
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+.footer-heading {
+  color: #4f46e5;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  position: relative;
+}
+
+.footer-heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background: #4f46e5;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: #4f46e5;
+  transform: translateX(5px);
+}
+
+.impact-stats {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.impact-stats h5 {
+  color: #fff;
+  font-weight: 700;
+}
+
+.impact-stats small {
+  color: #94a3b8;
+  font-size: 0.7rem;
+}
+
+.contact-info p {
+  color: #e2e8f0;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: #4f46e5;
+  transform: translateY(-3px);
+}
+
+.newsletter h6 {
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+
+.footer-bottom {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+.footer-bottom p {
+  color: #94a3b8;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.footer-legal-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 1rem;
+}
+
+.footer-legal-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.footer-legal-links a:hover {
+  color: #4f46e5;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .impact-footer {
     text-align: center;
   }
   
+  .footer-heading::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .contact-info p {
+    justify-content: center;
+  }
+}

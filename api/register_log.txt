@@ -1,0 +1,76 @@
+Request received: 2025-04-01 02:20:01
+Request received: 2025-04-01 02:21:52
+Request received: 2025-04-01 02:27:44
+Request received: 2025-04-01 02:31:40
+Request received: 2025-04-01 02:31:40
+Request received: 2025-04-01 02:31:40
+Request received: 2025-04-01 02:32:06
+Request received: 2025-04-01 02:33:19
+Request received: 2025-04-01 02:33:19
+Request received: 2025-04-01 02:33:19
+Request received: 2025-04-01 02:33:33
+Request received: 2025-04-01 02:34:40
+Headers set
+Raw input: {"full_name":"Livingstone Apeli","email":"livingstoneapeli@gmail.com","password":"12345678","confirm_password":"12345678"}
+Parsed data: Array
+(
+    [full_name] => Livingstone Apeli
+    [email] => livingstoneapeli@gmail.com
+    [password] => 12345678
+    [confirm_password] => 12345678
+)
+
+Extracted values - Name: Livingstone Apeli, Email: livingstoneapeli@gmail.com
+Input validation passed
+Email check passed
+Created new role with ID: 1
+Transaction started
+User inserted with ID: 1
+Verification email sent
+Transaction committed
+Success response sent
+Request received: 2025-04-01 02:37:35
+Headers set
+Raw input: {"full_name":"Livingstone Apeli Okubasu","email":"livingstoneapeli@gmail.com","password":"12345678","confirm_password":"12345678"}
+Parsed data: Array
+(
+    [full_name] => Livingstone Apeli Okubasu
+    [email] => livingstoneapeli@gmail.com
+    [password] => 12345678
+    [confirm_password] => 12345678
+)
+
+Extracted values - Name: Livingstone Apeli Okubasu, Email: livingstoneapeli@gmail.com
+Input validation passed
+ERROR: Email already registered
+Stack trace: #0 {main}
+Request received: 2025-04-01 02:38:34
+Headers set
+Raw input: 
+ERROR: JSON parsing error: Syntax error
+Stack trace: #0 {main}
+Request received: 2025-04-01 02:38:34
+Headers set
+OPTIONS request handled
+Request received: 2025-04-01 02:38:34
+Headers set
+Raw input: {"test":true}
+Parsed data: Array
+(
+    [test] => 1
+)
+
+Extracted values - Name: , Email: 
+ERROR: All fields are required
+Stack trace: #0 {main}
+Request received: 2025-04-01 02:38:34
+Headers set
+Raw input: {"test":true}
+Parsed data: Array
+(
+    [test] => 1
+)
+
+Extracted values - Name: , Email: 
+ERROR: All fields are required
+Stack trace: #0 {main}
