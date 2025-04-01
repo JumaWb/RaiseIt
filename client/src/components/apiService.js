@@ -8,6 +8,10 @@ export const API_ENDPOINTS = {
     RESET_PASSWORD: `${BASEURL}/reset_password.php`,
     GET_USER: `${BASEURL}/get_user.php`,
     UPDATE_USER: `${BASEURL}/update_user.php`,
+    EVENTS : `${BASEURL}/events.php`,
+    CREATE_EVENT : `${BASEURL}/create_event.php`,
+    UPDATE_EVENT : `${BASEURL}/update_event.php`,
+    DELETE_EVENT : `${BASEURL}/delete_event.php`,
 };
 
 export default API_ENDPOINTS;
