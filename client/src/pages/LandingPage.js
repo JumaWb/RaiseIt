@@ -7,11 +7,9 @@ import "./LandingPage.css";
 
 const LandingPage = () => {
   const [authMode, setAuthMode] = useState(null);
-  //const [user, setUser] = useState(null);
 
   return (
-    <> 
-      {/* Pass setAuthMode to Navbar */}
+    <>
       <CustomNavbar onAuth={setAuthMode} />
 
       <div className="landing-page">
@@ -25,8 +23,11 @@ const LandingPage = () => {
           </Row>
         </Container>
 
-        {/* Show AuthForm when authMode is set */}
-        {authMode && <AuthForm mode={authMode} onClose={() => setAuthMode(null)}  />}
+        {authMode && (
+          <div className="auth-form-container-right">
+            <AuthForm mode={authMode} onClose={() => setAuthMode(null)} />
+          </div>
+        )}
       </div>
 
       <Footer />

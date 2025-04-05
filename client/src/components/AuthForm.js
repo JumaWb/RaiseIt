@@ -1,18 +1,15 @@
 import React, { useState } from "react";
-import { Form, Button, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom"; // Import navigation
+import { Form, Button, Modal } from "react-bootstrap";
 import { API_ENDPOINTS } from "./apiService.js";
 import "./AuthForm.css";
 
-const AuthForm = ({ mode, onClose, setUser }) => {
-  const isRegister = mode === "register";
-  const navigate = useNavigate(); // Initialize navigate function
-
-  const [formData, setFormData] = useState({ 
-    full_name: "", 
-    email: "", 
+const AuthForm = ({ mode, onClose }) => {
+  const [isRegister, setIsRegister] = useState(mode === "register");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
     password: "",
-    confirm_password: "" 
+    confirmPassword: "",
   });
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -23,45 +20,43 @@ const AuthForm = ({ mode, onClose, setUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
     setMessage("");
-    
-    const dataToSend = isRegister ? formData : {
-      email: formData.email,
-      password: formData.password
-    };
-    
-    const url = isRegister ? API_ENDPOINTS.REGISTER : API_ENDPOINTS.LOGIN;
+    setIsLoading(true);
+
+    if (isRegister && formData.password !== formData.confirmPassword) {
+      setMessage("Passwords do not match!");
+      setIsLoading(false);
+      return;
+    }
+
+    const endpoint = isRegister ? API_ENDPOINTS.REGISTER : API_ENDPOINTS.LOGIN;
 
     try {
-      const response = await fetch(url, { 
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dataToSend)
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(isRegister ? {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        } : {
+          email: formData.email,
+          password: formData.password,
+        }),
       });
-      
+
       const data = await response.json();
-      
+
       if (data.status === "success") {
-        setMessage(data.message);
-        setUser({ 
-          name: isRegister ? formData.full_name : data.user_name || formData.email, 
-          email: formData.email 
-        });
-
-        if (data.token) {
-          localStorage.setItem("authToken", data.token);
-        }
-
+        setMessage(isRegister ? "Registration successful!" : "Login successful!");
         setTimeout(() => {
-          onClose(); // Close modal or auth form
-          navigate("/home"); // Redirect to Home page
+          onClose(); // Close the modal after success
         }, 1500);
       } else {
-        setMessage(data.message || "An error occurred");
+        setMessage(data.message || "Something went wrong. Try again.");
       }
     } catch (error) {
-      console.error("Authentication error:", error);
+      console.error("Auth error:", error);
       setMessage("Connection error. Please try again later.");
     } finally {
       setIsLoading(false);
@@ -69,91 +64,88 @@ const AuthForm = ({ mode, onClose, setUser }) => {
   };
 
   return (
-    <div className="auth-overlay">
-      <Card className="auth-card p-4 position-relative">
-        <span className="close-btn" onClick={onClose}>&times;</span>
+    <div className="auth-form-container-right">
+      <Modal show={true} onHide={onClose} centered>
+        <Modal.Body className="p-4 auth-form-container">
+          <Button variant="close" onClick={onClose} className="position-absolute top-0 end-0 m-3"></Button>
 
-        <Card.Body>
-          <h3 className="text-center mb-4">{isRegister ? "Register" : "Login"}</h3>
+          <h3 className="text-center mb-3">{isRegister ? "Register" : "Login"}</h3>
           {message && <p className="text-center text-danger">{message}</p>}
 
           <Form onSubmit={handleSubmit}>
             {isRegister && (
               <Form.Group className="mb-3">
                 <Form.Label>Full Name</Form.Label>
-                <Form.Control 
-                  type="text" 
-                  placeholder="Enter your full name" 
-                  name="full_name" 
-                  value={formData.full_name} 
-                  onChange={handleChange} 
-                  required 
+                <Form.Control
+                  type="text"
+                  name="name"
+                  placeholder="Enter your name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                 />
               </Form.Group>
             )}
 
             <Form.Group className="mb-3">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control 
-                type="email" 
-                placeholder="Enter email" 
-                name="email" 
-                value={formData.email} 
-                onChange={handleChange} 
-                required 
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                placeholder="Enter email"
+                value={formData.email}
+                onChange={handleChange}
+                required
               />
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
-              <Form.Control 
-                type="password" 
-                placeholder="Enter password" 
-                name="password" 
-                value={formData.password} 
-                onChange={handleChange} 
-                required 
+              <Form.Control
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                value={formData.password}
+                onChange={handleChange}
+                required
               />
             </Form.Group>
 
             {isRegister && (
               <Form.Group className="mb-3">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control 
-                  type="password" 
-                  placeholder="Confirm your password" 
-                  name="confirm_password" 
-                  value={formData.confirm_password} 
-                  onChange={handleChange} 
-                  required 
+                <Form.Label>Re-enter Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Re-enter password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  required
                 />
               </Form.Group>
             )}
 
-            <Button 
-              variant="primary" 
-              type="submit" 
-              className="w-100" 
+            <Button
+              variant="primary"
+              type="submit"
+              className="w-100 mb-3"
               disabled={isLoading}
             >
-              {isLoading ? "Processing..." : (isRegister ? "Sign Up" : "Login")}
+              {isLoading ? (isRegister ? "Registering..." : "Logging in...") : (isRegister ? "Register" : "Login")}
             </Button>
           </Form>
 
-          <div className="text-center mt-3">
-            <p>
-              {isRegister ? "Already have an account?" : "Don't have an account?"}  
-              <Button 
-                variant="link" 
-                className="p-0 ms-1 toggle-link" 
-                onClick={() => onClose()}
-              >
-                {isRegister ? "Login here" : "Register here"}
-              </Button>
-            </p>
-          </div>
-        </Card.Body>
-      </Card>
+          <p className="text-center mt-3">
+            {isRegister ? "Already have an account?" : "Don't have an account?"}{" "}
+            <span
+              className="text-primary cursor-pointer"
+              onClick={() => setIsRegister(!isRegister)}
+            >
+              {isRegister ? "Login" : "Register"}
+            </span>
+          </p>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

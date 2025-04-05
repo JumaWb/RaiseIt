@@ -1,0 +1,63 @@
+.sidebar {
+    position: fixed;
+    top: 56px; /* Adjust based on your navbar height */
+    left: 0;
+    width: 250px;
+    min-height: calc(100vh - 56px); /* Full height minus navbar */
+    background: rgba(0, 0, 0, 0.9);
+    border-right: 2px solid #ffc107;
+    padding: 15px;
+    transition: width 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto; /* Scroll if content is too long */
+  }
+  
+  .sidebar.collapsed {
+    width: 80px;
+  }
+  
+  .sidebar-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+  
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+  }
+  
+  .profile-section {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-name {
+    color: white;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Icons for collapsed state */
+  .collapsed-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .sidebar-icon {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .sidebar-icon:hover {
+    color: #ffc107;
+  }
+  
