@@ -5,65 +5,98 @@
   padding-top: 80px;
 }
 
-/* Advanced Sort Bar Styling */
-.sort-bar {
-  background: linear-gradient(135deg, #ffcc00, #ff9900);
-  padding: 10px 20px;
-  border-radius: 25px;
-  width: max-content;
-  margin: 20px auto;
+/* Toggle Bar */
+.custom-toggle-wrapper {
+  position: relative;
   display: flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0px 5px 12px rgba(255, 165, 0, 0.4);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease-in-out;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #555;
 }
 
-.sort-bar:hover {
-  transform: scale(1.05);
+.toggle-options {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
 }
 
-.sort-bar label {
-  font-weight: bold;
-  color: #000;
-}
-
-.sort-bar select {
-  background-color: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  font-weight: bold;
-  padding: 8px 12px;
-  border-radius: 15px;
+.toggle-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 0.7rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ccc;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: color 0.3s ease;
 }
 
-.sort-bar select:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+.toggle-btn.active,
+.toggle-btn:hover {
+  color: #ffc107; /* Yellow */
 }
 
-.sort-bar select:focus {
+.underline {
+  position: absolute;
+  bottom: -2px;
+  width: 50%;
+  height: 3px;
+  background-color: #ffc107;
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+.underline.upcoming {
+  transform: translateX(0%);
+}
+
+.underline.live {
+  transform: translateX(100%);
+}
+
+/* Sort dropdown (right-aligned) */
+form select {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid #ffc107;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form select:focus {
   outline: none;
-  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
 }
 
-/* Event Card Styling */
+/* Event Cards */
 .event-card {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   color: white;
   border: 1px solid #ffc107;
   text-align: center;
   box-shadow: 2px 2px 10px rgba(255, 193, 7, 0.3);
+  border-radius: 10px;
 }
 
 .event-card img {
   height: 200px;
   object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-.event-card .btn-warning {
-  width: 100%;
+.event-card .btn-primary {
+  background-color: #ffc107;
+  border-color: #ffc107;
   font-weight: bold;
+}
+
+.event-card .btn-primary:hover {
+  background-color: #e0ac00;
+  border-color: #e0ac00;
 }
